@@ -1,19 +1,24 @@
 // src/App.jsx
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import LandingPage from "./pages/LandingPage";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
+import { useUser } from '@clerk/clerk-react'
+import { Navigate} from 'react-router-dom'
+import Header from './components/Header';
+import SignInPage from './pages/SignInPage';
 
 const App = () => {
+  const {user,isSignedIn}=useUser();
+
+  if(!isSignedIn)
+    {
+    return <Navigate to={'signin'}/>
+  }
+  
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
-      </Routes>
-    </Router>
-  );
-};
+ <>
+ <Header/>
+ <SignInPage />
+ </>     
+  )
+}
 
 export default App;
