@@ -8,7 +8,7 @@ const Nav = () => {
       <div className="container mx-auto">
         <div className="w-full bg-gradient-to-r from-blue-300 to-blue-600 h-[70px] backdrop-blur-2xl rounded-full max-w-[350px] mx-auto px-5 flex justify-between text-2xl text-white/50">
           <Link
-            to="/src/pages/About.jsx" 
+            to="/" 
             activeClass="active"
             smooth={true}
             spy={true}
@@ -17,7 +17,7 @@ const Nav = () => {
             <BiHomeAlt />
           </Link>
           <Link
-            to="about" 
+            to="/about" 
             activeClass="active"
             smooth={true}
             spy={true}
@@ -26,7 +26,7 @@ const Nav = () => {
             <BiUser />
           </Link>
           <Link
-            to="contact" 
+            to="/contact" 
             activeClass="active"
             smooth={true}
             spy={true}
