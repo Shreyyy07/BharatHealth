@@ -7,7 +7,8 @@ import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
 // import { Navigate} from 'react-router-dom'
-import SignInPage from './pages/SignInPage.jsx'
+import SignInPage from './pages/SignInPage.jsx';
+import Details from './pages/Details.jsx';
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -18,7 +19,11 @@ const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
      {
        path:'/dashboard',
       element:<Dashboard/>
-    }
+    },
+    {
+      path: "/details", // ✅ Add the Details page here
+      element: <Details />,
+    },
   ]},
     {
       path:'/',
