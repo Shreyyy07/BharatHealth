@@ -7,12 +7,8 @@ import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import LandingPage from "./pages/LandingPage";
 import Dashboard from "./pages/Dashboard";
 // import { Navigate} from 'react-router-dom'
-import SignInPage from './pages/SignInPage.jsx'
-// import path from 'path'
-import About from './pages/About.jsx'
-import Contact from './pages/Contact.jsx'
-import Nav from './components/Nav.jsx'
-import BasicDetails from './pages/BasicDetails.jsx'
+import SignInPage from './pages/SignInPage.jsx';
+import Details from './pages/Details.jsx';
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -20,11 +16,15 @@ const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
     {
       element:<App/>,
       children:[
+     {
+       path:'/dashboard',
+      element:<Dashboard/>
+    },
+    {
+      path: "/details", // ✅ Add the Details page here
+      element: <Details />,
+    },
   ]},
-  {
-    path:'/dashboard',
-   element:<Dashboard/>
- },
     {
       path:'/',
       element:<LandingPage />
@@ -33,22 +33,6 @@ const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
     path:'/signin',
    element:<SignInPage/>
  },
- {
-  path:'/about',
- element:<About/>
-},
-{
-  path:'/Contact',
- element:<Contact/>
-},
-{
-  path:'/nav',
- element:<Nav/>
-},
-{
-  path:'/basicdetails',
- element:<BasicDetails/>
-}
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

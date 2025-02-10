@@ -18,6 +18,10 @@ const Header = () => {
    {/* link to dashboard page */}
    <button className="px-2 py-2 outline-1 hover:bg-blue-600 text-black rounded-lg font-semibold">DashBoard</button>
    </Link>
+   <Link to={'/details'}>
+   {/* link to details page */}
+   <button className="px-2 py-2 outline-1 hover:bg-blue-600 text-black rounded-lg font-semibold">Details</button>
+   </Link>
       
       <UserButton/>
     </div>:
