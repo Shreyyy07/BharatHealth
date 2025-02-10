@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { FaCloudUploadAlt, FaFilePdf, FaFileImage, FaTimes } from 'react-icons/fa';
+import Header from '../components/Header';
 
 const Dashboard = () => {
   const [selectedCategory, setSelectedCategory] = useState('bloodReport');
@@ -63,7 +64,10 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="dashboard-container max-w-2xl mx-auto p-6 font-sans bg-gradient-to-r from-indigo-200 via-blue-300 to-indigo-500 rounded-lg border-2 border-gray-500 shadow-lg">
+  <div>
+  <Header/>
+    <div className="dashboard-container grid grid-cols-1 max-w-2xl mx-auto p-6 font-sans bg-gradient-to-r from-indigo-200 via-blue-300 to-indigo-500 rounded-lg border-2 border-gray-500 shadow-lg mt-4">
+      
       <h1 className="text-2xl font-semibold text-gray-800 text-center mb-6">Medical Reports Dashboard</h1>
       
       {/* Category Menu */}
@@ -157,6 +161,7 @@ const Dashboard = () => {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 };

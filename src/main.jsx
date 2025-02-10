@@ -12,6 +12,7 @@ import SignInPage from './pages/SignInPage.jsx'
 import About from './pages/About.jsx'
 import Contact from './pages/Contact.jsx'
 import Nav from './components/Nav.jsx'
+import BasicDetails from './pages/BasicDetails.jsx'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -43,6 +44,10 @@ const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 {
   path:'/nav',
  element:<Nav/>
+},
+{
+  path:'/basicdetails',
+ element:<BasicDetails/>
 }
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
