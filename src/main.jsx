@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard";
 // import { Navigate} from 'react-router-dom'
 import SignInPage from './pages/SignInPage.jsx';
 import Details from './pages/Details.jsx';
+import About from './pages/About.jsx'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -33,6 +34,11 @@ const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
     path:'/signin',
    element:<SignInPage/>
  },
+ {
+  path:'/about',
+   element:<About/>
+  }
+
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

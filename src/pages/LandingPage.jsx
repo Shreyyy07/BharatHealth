@@ -5,6 +5,7 @@ import { AtomIcon, Clock10, Notebook } from "lucide-react";
 import Nav from "../components/Nav";
 import { useState,useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "@clerk/clerk-react";
 import {
   FaCheckCircle,
   FaUser,
@@ -17,25 +18,28 @@ import {
 
 const LandingPage = () => {
   const [showPopup, setShowPopup] = useState(false);
+  const { user } = useUser(); // Get user details
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setShowPopup(true); // Always show popup when landing
-  }, []);
+  // Function to get greeting based on the time of day
+  const getGreeting = () => {
+    const hours = new Date().getHours();
+    if (hours < 12) return "Good Morning";
+    else if (hours < 18) return "Good Afternoon";
+    else return "Good Evening";
+  };
 
+  useEffect(() => {
+    if (user) {
+      setShowPopup(true); // Show popup only after sign-in
+    }
+  }, [user]);
 
   return (
     <div className="reltive">
       <Header />
       <Nav /> {/* Navbar Component */}
 
-        {/* Blur Effect on Background when Popup is Active */}
-        <div className={`${showPopup ? "backdrop-blur-lg" : ""} transition-all duration-300`}>
-        <motion.section
-          variants={{ hidden: { opacity: 0 }, show: { opacity: 1 } }}
-          initial="hidden"
-          animate="show"
-        >
           <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16 lg:px-12 relative overflow-hidden before:absolute before:top-0 before:start-1/2 before:bg-[url('https://preline.co/assets/svg/examples/polygon-bg-element.svg')] before:bg-top before:bg-cover before:size-full before:-z-[6] before:transform before:-translate-x-1/2">
             <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-5xl">
               All Your Health Information in One Place, <br />
@@ -45,46 +49,59 @@ const LandingPage = () => {
               Take ownership of your & your family’s health by digitizing your
               medical records.
             </p>
+            <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
+            <a
+              href="/dashboard"
+              className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
+            >
+              Get Started
+              <svg
+                className="ml-2 -mr-1 w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                ></path>
+              </svg>
+            </a>
           </div>
-        </motion.section>
+          </div>
+        {/* </motion.section> */}
 
-        {/* Popup Modal */}
-        {showPopup && (
-          <div className="fixed inset-0 flex justify-center items-center bg-opacity-50 backdrop-blur-sm z-50">
-            <div className="relative bg-gradient-to-r from-blue-100 to-blue-300 p-6 rounded-lg shadow-lg max-w-sm w-full text-center">
-              {/* Close Button */}
-              <button
-                onClick={() => setShowPopup(false)}
-                className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-              >
-                ✕
-              </button>
+         {/* Personalized Popup Modal */}
+      {showPopup && user && (
+        <div className="fixed inset-0 flex justify-center items-center bg-opacity-50 backdrop-blur-sm z-50">
+          <div className="relative bg-gradient-to-r from-blue-100 to-blue-300 p-6 rounded-lg shadow-lg max-w-sm w-full text-center">
+            {/* Close Button */}
+            <button
+              onClick={() => setShowPopup(false)}
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+            >
+              ✕
+            </button>
 
-              {/* Image */}
-              <img
-                src="/pop-up.webp"
-                alt="Digital Health Concept"
-                className="w-40 h-40 mx-auto mb-4"
-              />
+            {/* Greeting */}
+            <h2 className="text-xl font-bold text-gray-800">{getGreeting()}, {user.firstName}!</h2>
+            
+            {/* Profile Completion Status */}
+            <p className="text-gray-600 mt-2">Your profile is <span className="font-bold text-blue-600">80% completed</span>.</p>
+            <p className="text-gray-500 text-sm mt-1">Complete your profile to get better insights about your medical data.</p>
 
-              {/* Title & Description */}
-              <h2 className="text-xl font-bold mb-2">Your Health, Digitized</h2>
-              <p className="text-gray-600 mb-4">
-                Easily store and manage your medical records anytime, anywhere.
-              </p>
-
-              {/* CTA Button */}
-              <button
-                onClick={() => navigate("/basicDetails")}
-                className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-              >
-                Complete Now
-              </button>
+            {/* CTA Button */}
+            <button
+              onClick={() => navigate("/details")}
+              className="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+            >
+              Complete Your Profile →
+            </button>
             </div>
           </div>
         )}
-      </div>
-
+   
       {/* What We Offer Section */}
       <motion.section
         variants={fadeIn("up", 0.3)}
