@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { fadeIn } from "/variants.js"; // Importing fade-in animation
+import { fadeIn } from "/variants.js";
 import Header from "../components/Header";
 import { AtomIcon, Clock10, Notebook } from "lucide-react";
 import Nav from "../components/Nav";
@@ -50,8 +50,8 @@ const LandingPage = () => {
               medical records.
             </p>
             <div className="flex flex-col mb-8 lg:mb-16 space-y-4 sm:flex-row sm:justify-center sm:space-y-0 sm:space-x-4">
-            <a
-              href="/dashboard"
+            <button
+              onClick={() => navigate("/src/Dashboard.jsx/index.jsx")}
               className="inline-flex justify-center items-center py-3 px-5 text-base font-medium text-center text-white rounded-lg bg-blue-500 hover:bg-blue-600 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900"
             >
               Get Started
@@ -67,7 +67,7 @@ const LandingPage = () => {
                   clipRule="evenodd"
                 ></path>
               </svg>
-            </a>
+            </button>
           </div>
           </div>
         {/* </motion.section> */}
@@ -123,7 +123,7 @@ const LandingPage = () => {
               initial="hidden"
               whileInView="show"
               viewport={{ once: false, amount: 0.7 }}
-              className="block rounded-xl border bg-white border-gray-200 p-8 shadow-xl transition hover:border-pink-500/10 hover:shadow-pink-500/10"
+              className="block rounded-xl border bg-white border-gray-200 p-8 shadow-xl transition hover:border-blue-500/20 hover:shadow-blue-500/20"
               href="#"
             >
               {item.icon}

@@ -3,7 +3,7 @@ import { useUser } from '@clerk/clerk-react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import SignInPage from './pages/SignInPage';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './Dashboard.jsx/index';
 import {doc, getDoc} from 'firebase/firestore';
 import { db } from './firebase-config';
 import { useEffect } from 'react';

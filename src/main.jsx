@@ -5,11 +5,14 @@ import App from './App.jsx'
 import { ClerkProvider } from '@clerk/clerk-react'
 import { createBrowserRouter,RouterProvider } from 'react-router-dom'
 import LandingPage from "./pages/LandingPage";
-import Dashboard from "./pages/Dashboard";
+import Dashboard from "./Dashboard.jsx/index.jsx";
 // import { Navigate} from 'react-router-dom'
 import SignInPage from './pages/SignInPage.jsx';
 import Details from './pages/Details.jsx';
 import About from './pages/About.jsx'
+import Reports from './Dashboard.jsx/components/Reports.jsx'
+import HealthRecord from './Dashboard.jsx/components/HealthData.jsx'
+import AskAi from './Dashboard.jsx/components/AskAi.jsx'
 
 const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
 
@@ -37,7 +40,19 @@ const PUBLISHABLE_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
  {
   path:'/about',
    element:<About/>
-  }
+  },
+{
+  path:'/reports',
+  element:<Reports/>
+},
+{
+  path:'/healthrecord',
+  element:<HealthRecord/>
+},
+{
+  path:'/askai',
+  element:<AskAi/>
+},
 
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
